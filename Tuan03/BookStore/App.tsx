@@ -11,7 +11,7 @@ export default function App() {
         <Header />
         <CategoryChip />
       </View>
-      <View>
+      <View style={styles.bookGrid}>
         <BookCard />
         <BookCard />
         <BookCard />
@@ -25,5 +25,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingHorizontal: 16,
+  },
+  bookGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
 });
