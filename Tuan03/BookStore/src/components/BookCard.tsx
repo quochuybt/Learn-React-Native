@@ -1,22 +1,22 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
+import { BookCardItemProp } from "../interface/BookInterface";
 
-const BookCard = () => {
+const BookCard = ({book}:BookCardItemProp) => {
   return (
     <View style={styles.container}>
       <View style={styles.imageBox}>
         <Image
-          source={require("../assets/biasach.jpg")}
+          source={book.source}
           style={styles.biasach}
           resizeMode="contain"
         />
+        <View style={styles.discount}>
+          <Text style={{color:"white",fontWeight:"bold"}}>{book.discount} %</Text>
+        </View>
       </View>
       <View style={styles.content}>
-        <View>
-          <Text numberOfLines={2}>Săn cá thần</Text>
-          <Text>Đặng Thiều Quang</Text>
-        </View>
-        <Text>200.000 đ</Text>
+          <Text numberOfLines={2}>{book.title} - {book.price} đ</Text>
       </View>
     </View>
   );
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     width: "48%",
     backgroundColor: "#fff",
     marginBottom: 8,
-    padding: 12,
     borderRadius: 12,
   },
   biasach: {
@@ -38,8 +37,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    marginLeft: 15,
-    justifyContent: "space-between",
+    alignItems:"center",
     paddingVertical: 5,
   },
   imageBox: {
@@ -48,4 +46,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: "hidden",
   },
+  discount: {
+    position:"absolute",
+    backgroundColor:"red",
+    top:6,
+    left:16,
+    zIndex:1,
+    borderRadius:15,
+    padding:5
+  }
 });

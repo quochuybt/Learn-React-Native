@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <View style={styles.container}>
       <View>
-        <Image source={require("../assets/logo.jpg")} style={styles.logo} />
+        <Image source={require("../../assets/logo.jpg")} style={styles.logo} />
       </View>
       <View style={styles.rightContainer}>
         <Pressable onPress={() => console.log("search")}>
