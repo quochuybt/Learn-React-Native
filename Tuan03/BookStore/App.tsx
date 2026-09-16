@@ -8,7 +8,7 @@ import HomeScreen from "./src/screen/HomeScreen";
 export default function App() {
   return (
     <View style={styles.container}>
-      <HomeScreen/>
+      <HomeScreen />
     </View>
   );
 }
@@ -18,5 +18,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     paddingHorizontal: 16,
-  }
+  },
 });
