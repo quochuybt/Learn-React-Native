@@ -15,7 +15,7 @@ const CategoryChip = () => {
     <View style={styles.container}>
       {CATEGORY.map((cat) => {
         return (
-          <View style={styles.chip}>
+          <View key={cat} style={styles.chip}>
             <Text>{cat}</Text>
           </View>
         );

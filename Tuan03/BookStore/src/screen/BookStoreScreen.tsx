@@ -38,6 +38,20 @@ const books = [
     price: 200000,
     discount: 11,
   },
+  {
+    source: require("../../assets/biasach.jpg"),
+    title: "Săn cá thần",
+    author: "Đặng Thiều Quang",
+    price: 200000,
+    discount: 11,
+  },
+  {
+    source: require("../../assets/biasach.jpg"),
+    title: "Săn cá thần",
+    author: "Đặng Thiều Quang",
+    price: 200000,
+    discount: 11,
+  },
 ];
 
 const BookStoreScreen = () => {
