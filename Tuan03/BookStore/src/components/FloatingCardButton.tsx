@@ -3,8 +3,8 @@ import React from "react";
 
 const FloatingCardButton = () => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.cartButton} >
+    <View>
+      <TouchableOpacity style={styles.cartButton}>
         <Text style={styles.cartText}>Giỏ hàng</Text>
         <View style={styles.badge}>
           <Text style={styles.badgeText}>4</Text>
@@ -17,13 +17,6 @@ const FloatingCardButton = () => {
 export default FloatingCardButton;
 
 const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
   cartButton: {
     position: "absolute",
     bottom: 24,
