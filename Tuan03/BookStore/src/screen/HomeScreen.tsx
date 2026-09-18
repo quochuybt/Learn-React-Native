@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 import React from "react";
 import Header from "../components/Header";
 import CategoryChip from "../components/CategoryChip";
@@ -8,14 +8,14 @@ import FloatingCardButton from "../components/FloatingCardButton";
 
 const HomeScreen = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <Header />
       <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-        <Header />
         <CategoryChip />
         <BookStoreScreen />
       </ScrollView>
       <FloatingCardButton />
-    </View>
+    </SafeAreaView>
   );
 };
 
