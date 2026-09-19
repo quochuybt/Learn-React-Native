@@ -56,12 +56,12 @@
       <img src="./minhchung/floatingcartbutton.png" width="400"/>
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <img src="./minhchung/badge.png" width="400"/>
+    </td>
+    <td align="center">
+      <img src="./minhchung/bookdetail.png" width="400"/>
+    </td>
+  </tr>
 </table>
-
-<br>
-
-### 7. Cart Badge
-
-<p align="center">
-  <img src="./minhchung/badge.png" width="400"/>
-</p>
