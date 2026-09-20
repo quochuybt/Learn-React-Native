@@ -1,6 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import BookCard from "../components/BookCard";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
 
 const books = [
   {
@@ -55,11 +58,26 @@ const books = [
 ];
 
 const BookStoreScreen = () => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <View style={styles.container}>
       {books.map((book, index) => {
         const isSingle = books.length % 2 !== 0 && index === books.length - 1;
-        return <BookCard key={index} book={book} isSingle={isSingle} />;
+
+        return (
+          <BookCard
+            key={index}
+            book={book}
+            isSingle={isSingle}
+            onPress={() =>
+              navigation.navigate("BookDetail", {
+                book: book,
+              })
+            }
+          />
+        );
       })}
     </View>
   );

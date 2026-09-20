@@ -11,4 +11,5 @@ export interface Book {
 export interface BookCardItemProp {
   book: Book;
   isSingle?: boolean;
+  onPress?: () => void;
 }

@@ -9,49 +9,56 @@ import {
 } from "react-native";
 import React from "react";
 
-const BookDetailScreen = () => {
+const BookDetailScreen = ({ route }: any) => {
+  const { book } = route.params;
   return (
     <SafeAreaView style={styles.container}>
       {/* Ảnh sách */}
       <Image
-        source={require("../../assets/biasach.jpg")}
+        source={book.source}
         style={styles.bookImage}
         resizeMode="contain"
       />
 
-      {/* Nội dung chi tiết */}
+      {/* Nội dung */}
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.content}
       >
-        <Text style={styles.title}>Săn cá thần</Text>
+        <Text style={styles.title}>{book.title}</Text>
 
-        <Text style={styles.author}>Tác giả: Đặng Thiều Quang</Text>
+        <Text style={styles.author}>Tác giả: {book.author}</Text>
 
         <View style={styles.priceContainer}>
-          <Text style={styles.price}>200.000 đ</Text>
-        </View>
-
-        <View style={styles.info}>
-          <Text style={styles.label}>Mô tả sách</Text>
-
-          <Text style={styles.description}>
-            Đây là một cuốn sách hấp dẫn dành cho những người yêu thích thể loại
-            phiêu lưu và khám phá. Nội dung sách mang đến nhiều câu chuyện thú
-            vị và những trải nghiệm đáng nhớ cho người đọc.
+          <Text style={styles.price}>
+            {book.price.toLocaleString("vi-VN")} đ
           </Text>
 
-          <Text style={styles.label}>Thông tin sách</Text>
-
-          <Text style={styles.infoText}>Nhà xuất bản: NXB Văn học</Text>
-          <Text style={styles.infoText}>Năm xuất bản: 2024</Text>
-          <Text style={styles.infoText}>Số trang: 320</Text>
-          <Text style={styles.infoText}>Ngôn ngữ: Tiếng Việt</Text>
+          <Text style={styles.oldPrice}>
+            {(book.price + 50000).toLocaleString("vi-VN")} đ
+          </Text>
         </View>
+
+        <Text style={styles.label}>Mô tả sách</Text>
+
+        <Text style={styles.description}>
+          Đây là một cuốn sách hấp dẫn dành cho những người yêu thích thể loại
+          phiêu lưu và khám phá.
+        </Text>
+
+        <Text style={styles.label}>Thông tin sách</Text>
+
+        <Text style={styles.infoText}>Tác giả: {book.author}</Text>
+
+        <Text style={styles.infoText}>
+          Giá: {book.price.toLocaleString("vi-VN")} đ
+        </Text>
+
+        <Text style={styles.infoText}>Giảm giá: {book.discount}%</Text>
       </ScrollView>
 
-      {/* Thanh dưới cùng - nằm ngoài ScrollView */}
+      {/* Bottom bar nằm ngoài ScrollView */}
       <View style={styles.bottomBar}>
         <TouchableOpacity style={styles.addButton}>
           <Text style={styles.addButtonText}>Thêm vào giỏ</Text>

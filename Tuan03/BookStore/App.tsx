@@ -1,17 +1,37 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import Header from "./src/components/Header";
-import BookCard from "./src/components/BookCard";
-import CategoryChip from "./src/components/CategoryChip";
+import { StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import HomeScreen from "./src/screen/HomeScreen";
 import BookDetailScreen from "./src/screen/BookDetailScreen";
 
+export type RootStackParamList = {
+  Home: undefined;
+  BookDetail: {
+    book: {
+      source: any;
+      title: string;
+      author: string;
+      price: number;
+      discount: number;
+    };
+  };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      {/* <HomeScreen /> */}
-      <BookDetailScreen />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="BookDetail" component={BookDetailScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

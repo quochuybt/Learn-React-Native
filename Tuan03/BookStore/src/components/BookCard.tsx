@@ -1,22 +1,28 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { BookCardItemProp } from "../interface/BookInterface";
 
-const BookCard = ({ book, isSingle }: BookCardItemProp) => {
+const BookCard = ({ book, isSingle, onPress }: BookCardItemProp) => {
   return (
-    <View style={[styles.container, isSingle && styles.singleContainer]}>
+    <TouchableOpacity
+      style={[styles.container, isSingle && styles.singleContainer]}
+      onPress={onPress}
+      activeOpacity={0.8}
+    >
       <View style={[styles.imageBox, isSingle && styles.singleImageBox]}>
         <Image
           source={book.source}
           style={styles.biasach}
           resizeMode="contain"
         />
+
         <View style={styles.discount}>
           <Text style={{ color: "white", fontWeight: "bold" }}>
             {book.discount} %
           </Text>
         </View>
       </View>
+
       <View style={[styles.content, isSingle && styles.singleContent]}>
         {isSingle ? (
           <>
@@ -32,7 +38,7 @@ const BookCard = ({ book, isSingle }: BookCardItemProp) => {
           </Text>
         )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
