@@ -8,11 +8,31 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
 
 const BookDetailScreen = ({ route }: any) => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { book } = route.params;
+
   return (
     <SafeAreaView style={styles.container}>
+      {/* Header phía trên với nút quay lại */}
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+          activeOpacity={0.7}
+        >
+          <FontAwesome name="arrow-left" size={20} color="#333" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Chi tiết sách</Text>
+        <View style={styles.headerPlaceholder} />
+      </View>
+
       <Image
         source={book.source}
         style={styles.bookImage}
@@ -56,7 +76,11 @@ const BookDetailScreen = ({ route }: any) => {
       </ScrollView>
 
       <View style={styles.bottomBar}>
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => navigation.navigate("Cart")}
+          activeOpacity={0.8}
+        >
           <Text style={styles.addButtonText}>Thêm vào giỏ</Text>
         </TouchableOpacity>
       </View>
@@ -70,6 +94,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+  },
+
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
+    backgroundColor: "#fff",
+  },
+
+  backButton: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: "#f5f6fa",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#2c3e50",
+  },
+
+  headerPlaceholder: {
+    width: 38,
   },
 
   bookImage: {

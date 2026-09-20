@@ -63,10 +63,10 @@
 <table>
   <tr>
     <td align="center">
-      <strong>5. Badge</strong>
+      <strong>7. Badge</strong>
     </td>
     <td align="center">
-      <strong>6. BookDetail</strong>
+      <strong>8. BookDetail</strong>
     </td>
   </tr>
   <tr>
@@ -78,3 +78,23 @@
     </td>
   </tr>
 </table>
+
+<table>
+  <tr>
+    <td align="center">
+      <strong>9. BottomTabBar</strong>
+    </td>
+    <td align="center">
+      <strong>10. CartScreen</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="./minhchung/tabbar.png" width="400"/>
+    </td>
+    <td align="center">
+      <img src="./minhchung/cartscreen.png" width="400"/>
+    </td>
+  </tr>
+</table>
+
