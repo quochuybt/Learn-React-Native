@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
-import React from "react";
 import Header from "../components/Header";
 import CategoryChip from "../components/CategoryChip";
-import BookCard from "../components/BookCard";
 import BookStoreScreen from "./BookStoreScreen";
 import FloatingCardButton from "../components/FloatingCardButton";
+import BottomTabBar from "../components/BottomTabBar";
+import { useState } from "react";
 
 const HomeScreen = () => {
+  const [activeTab, setActiveTab] = useState(0);
   return (
     <SafeAreaView style={styles.container}>
       <Header />
@@ -15,6 +16,7 @@ const HomeScreen = () => {
         <BookStoreScreen />
       </ScrollView>
       <FloatingCardButton />
+      <BottomTabBar activeTab={activeTab} onChange={setActiveTab}/>
     </SafeAreaView>
   );
 };

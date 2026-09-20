@@ -56,6 +56,19 @@
       <img src="./minhchung/floatingcartbutton.png" width="400"/>
     </td>
   </tr>
+</table>
+
+  <br>
+
+<table>
+  <tr>
+    <td align="center">
+      <strong>5. Badge</strong>
+    </td>
+    <td align="center">
+      <strong>6. BookDetail</strong>
+    </td>
+  </tr>
   <tr>
     <td align="center">
       <img src="./minhchung/badge.png" width="400"/>
