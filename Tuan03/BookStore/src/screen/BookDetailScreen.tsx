@@ -13,14 +13,11 @@ const BookDetailScreen = ({ route }: any) => {
   const { book } = route.params;
   return (
     <SafeAreaView style={styles.container}>
-      {/* Ảnh sách */}
       <Image
         source={book.source}
         style={styles.bookImage}
         resizeMode="contain"
       />
-
-      {/* Nội dung */}
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -58,7 +55,6 @@ const BookDetailScreen = ({ route }: any) => {
         <Text style={styles.infoText}>Giảm giá: {book.discount}%</Text>
       </ScrollView>
 
-      {/* Bottom bar nằm ngoài ScrollView */}
       <View style={styles.bottomBar}>
         <TouchableOpacity style={styles.addButton}>
           <Text style={styles.addButtonText}>Thêm vào giỏ</Text>

@@ -1,10 +1,20 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
 
 const FloatingCardButton = () => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
-    <View>
-      <TouchableOpacity style={styles.cartButton}>
+    <View pointerEvents="box-none">
+      <TouchableOpacity
+        style={styles.cartButton}
+        onPress={() => navigation.navigate("Cart")}
+        activeOpacity={0.8}
+      >
         <Text style={styles.cartText}>Giỏ hàng</Text>
         <View style={styles.badge}>
           <Text style={styles.badgeText}>4</Text>

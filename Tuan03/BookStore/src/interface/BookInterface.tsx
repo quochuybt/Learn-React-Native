@@ -1,7 +1,7 @@
 import { ImageSourcePropType } from "react-native";
 
 export interface Book {
-  source: ImageSourcePropType | string;
+  source: ImageSourcePropType;
   title: string;
   author: string;
   price: number;

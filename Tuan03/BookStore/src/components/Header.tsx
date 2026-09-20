@@ -1,8 +1,14 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
 
 const Header = () => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <View style={styles.container}>
       <View>
@@ -12,7 +18,7 @@ const Header = () => {
         <Pressable onPress={() => console.log("search")}>
           <FontAwesome name="search" size={24} color="white" />
         </Pressable>
-        <Pressable onPress={() => console.log("cart")}>
+        <Pressable onPress={() => navigation.navigate("Cart")}>
           <FontAwesome name="shopping-cart" size={24} color="white" />
         </Pressable>
       </View>
