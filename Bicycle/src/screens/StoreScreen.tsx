@@ -45,7 +45,7 @@ const bicycles: Bicycle[] = [
 
 const categories = ["All", "Roadbike", "Mountain"];
 
-const StoreScreen = () => {
+const StoreScreen = ({ navigation }: any) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   return (
     <SafeAreaView style={{ margin: 10 }}>
@@ -91,7 +91,9 @@ const StoreScreen = () => {
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <View style={{ justifyContent: "center" }}>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Detail", { item })}
+              >
                 <BicycleCard
                   image={item.image}
                   title={item.title}
