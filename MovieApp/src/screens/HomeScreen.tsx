@@ -1,6 +1,7 @@
 import {
   ActivityIndicator,
   FlatList,
+  RefreshControl,
   StyleSheet,
   Switch,
   Text,
@@ -16,6 +17,7 @@ import MovieCard from "../components/MovieCard";
 const HomeScreen = ({ navigation }: any) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false); // Câu 6: State kéo xuống làm mới
   const [error, setError] = useState("");
   const [isTile, setIsTile] = useState(false);
   const [selectCate, setSelectCate] = useState("All");
@@ -27,23 +29,31 @@ const HomeScreen = ({ navigation }: any) => {
     if (movie) navigation.navigate("Detail", { movie });
   };
 
+  const fetchData = async () => {
+    try {
+      const res = await fetch(
+        "https://697c4082889a1aecfeb1caab.mockapi.io/movies",
+      );
+      const data = await res.json();
+      setMovies(data);
+    } catch (error: any) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const res = await fetch(
-          "https://697c4082889a1aecfeb1caab.mockapi.io/movies",
-        );
-        const data = await res.json();
-        setMovies(data);
-      } catch (error: any) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    setLoading(true);
     fetchData();
   }, []);
+
+  // Câu 6: Hàm refresh gọi lại API GET
+  const onRefresh = () => {
+    setRefreshing(true);
+    fetchData();
+  };
 
   const movieFiter = useMemo(() => {
     return movies.filter((m) => {
@@ -80,6 +90,7 @@ const HomeScreen = ({ navigation }: any) => {
           const isSelect = item === selectCate;
           return (
             <TouchableOpacity
+              key={item}
               style={[
                 {
                   borderRadius: 20,
@@ -138,6 +149,10 @@ const HomeScreen = ({ navigation }: any) => {
           contentContainerStyle={{ padding: 10, gap: 10 }}
           keyExtractor={(item) => item.id.toString()}
           key={isTile ? "grid" : "list"}
+          refreshControl={
+            // Câu 6: Thêm RefreshControl
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         />
       )}
     </SafeAreaView>

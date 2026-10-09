@@ -8,8 +8,8 @@ export interface Movie {
   isShowing: boolean;
 }
 
-export interface MovieCard {
+export interface MovieCardProps {
   movie: Movie;
-  layout?: "tile" | "row";
-  onSelect: () => void;
+  layout?: "row" | "tile";
+  onSelect: (id: string) => void;
 }

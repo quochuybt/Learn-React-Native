@@ -6,6 +6,7 @@ const MovieCard = ({ movie, layout = "row", onSelect }: MovieCardProps) => {
   const isTile = layout === "tile";
   return (
     <TouchableOpacity
+      testID="movie-card"
       onPress={() => onSelect(movie.id)}
       style={[
         {
@@ -29,7 +30,8 @@ const MovieCard = ({ movie, layout = "row", onSelect }: MovieCardProps) => {
       <View
         style={{
           width: isTile ? "100%" : 80,
-          height: isTile ? 220 : 120,
+          height: isTile ? undefined : 120,
+          aspectRatio: isTile ? 2 / 3 : undefined, // Câu 4b: aspectRatio: 2/3
           justifyContent: "center",
           alignItems: "center",
         }}
@@ -39,7 +41,7 @@ const MovieCard = ({ movie, layout = "row", onSelect }: MovieCardProps) => {
           style={{
             width: "100%",
             height: "100%",
-            resizeMode: "contain",
+            resizeMode: isTile ? "cover" : "contain",
             borderRadius: 20,
           }}
         />
@@ -55,8 +57,13 @@ const MovieCard = ({ movie, layout = "row", onSelect }: MovieCardProps) => {
         <Text style={{ fontSize: 16, fontWeight: "bold" }} numberOfLines={1}>
           {movie.title}
         </Text>
-        <Text style={{ fontSize: 16 }}>Thể loại: {movie.genre}</Text>
-        <Text style={{ fontSize: 16 }}>Năm: {movie.year}</Text>
+        {/* Câu 4b: ẩn thể loại và năm khi là dạng tile */}
+        {!isTile && (
+          <Text style={{ fontSize: 16 }}>Thể loại: {movie.genre}</Text>
+        )}
+        {!isTile && (
+          <Text style={{ fontSize: 16 }}>Năm: {movie.year}</Text>
+        )}
         {!isTile && (
           <Text style={{ fontSize: 16 }}>
             Đánh giá: ⭐{movie.rating.toFixed(1)}
