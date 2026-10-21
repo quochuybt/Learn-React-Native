@@ -1,0 +1,61 @@
+[{
+        "id": 1,
+        "name": "Laptop Dell Inspiron",
+        "price": 15000000,
+        "quantity": 1
+    },
+    {
+        "id": 2,
+        "name": "iPhone 16",
+        "price": 22000000,
+        "quantity": 2
+    },
+    {
+        "id": 3,
+        "name": "Tai nghe Bluetooth",
+        "price": 850000,
+        "quantity": 1
+    },
+    {
+        "id": 4,
+        "name": "Bàn phím cơ",
+        "price": 1200000,
+        "quantity": 3
+    },
+    {
+        "id": 5,
+        "name": "Chuột Logitech",
+        "price": 650000,
+        "quantity": 2
+    },
+    {
+        "id": 6,
+        "name": "Màn hình Samsung",
+        "price": 4500000,
+        "quantity": 1
+    },
+    {
+        "id": 7,
+        "name": "iPad Air",
+        "price": 16000000,
+        "quantity": 1
+    },
+    {
+        "id": 8,
+        "name": "Loa Bluetooth JBL",
+        "price": 1800000,
+        "quantity": 2
+    },
+    {
+        "id": 9,
+        "name": "Sạc dự phòng",
+        "price": 550000,
+        "quantity": 4
+    },
+    {
+        "id": 10,
+        "name": "USB 64GB",
+        "price": 250000,
+        "quantity": 2
+    }
+]
