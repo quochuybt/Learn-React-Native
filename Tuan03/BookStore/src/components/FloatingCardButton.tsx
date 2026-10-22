@@ -1,24 +1,27 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import { useCart } from "../hooks/useCart";
 
 const FloatingCardButton = () => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<any>();
+  const { totalQuantity } = useCart();
 
   return (
-    <View pointerEvents="box-none">
+    <View pointerEvents="box-none" style={styles.wrapper}>
       <TouchableOpacity
         style={styles.cartButton}
         onPress={() => navigation.navigate("Cart")}
         activeOpacity={0.8}
       >
         <Text style={styles.cartText}>Giỏ hàng</Text>
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>4</Text>
-        </View>
+        {totalQuantity > 0 && (
+          <View style={styles.badge}>
+            <Text style={styles.badgeText}>
+              {totalQuantity > 99 ? "99+" : totalQuantity}
+            </Text>
+          </View>
+        )}
       </TouchableOpacity>
     </View>
   );
@@ -27,16 +30,24 @@ const FloatingCardButton = () => {
 export default FloatingCardButton;
 
 const styles = StyleSheet.create({
-  cartButton: {
+  wrapper: {
     position: "absolute",
     bottom: 24,
     right: 20,
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    zIndex: 99,
+  },
+  cartButton: {
+    width: 76,
+    height: 76,
+    borderRadius: 38,
     backgroundColor: "#6688ff",
     justifyContent: "center",
     alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 6,
   },
   cartText: {
     fontWeight: "bold",
@@ -45,19 +56,21 @@ const styles = StyleSheet.create({
   },
   badge: {
     position: "absolute",
-    top: 0,
-    right: -5,
-    width: 30,
+    top: -2,
+    right: -2,
+    minWidth: 26,
     height: 24,
     backgroundColor: "#e74c3c",
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
+    paddingHorizontal: 5,
+    borderWidth: 2,
+    borderColor: "#fff",
   },
-
   badgeText: {
     color: "white",
     fontWeight: "bold",
-    fontSize: 14,
+    fontSize: 12,
   },
 });

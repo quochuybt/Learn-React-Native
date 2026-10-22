@@ -1,46 +1,22 @@
-import { StyleSheet } from "react-native";
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Provider } from "react-redux";
+import { store } from "./src/store";
+import AppNavigator from "./src/navigation/AppNavigator";
 
-import HomeScreen from "./src/screen/HomeScreen";
-import BookDetailScreen from "./src/screen/BookDetailScreen";
-import CartScreen from "./src/screen/CartScreen";
-
-export type RootStackParamList = {
-  Home: undefined;
-  BookDetail: {
-    book: {
-      source: any;
-      title: string;
-      author: string;
-      price: number;
-      discount: number;
-    };
-  };
-  Cart: undefined;
-};
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+export * from "./src/navigation/types";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="BookDetail" component={BookDetailScreen} />
-        <Stack.Screen name="Cart" component={CartScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <StatusBar style="auto" />
+          <AppNavigator />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-});

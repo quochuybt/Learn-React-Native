@@ -1,78 +1,30 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import BookCard from "../components/BookCard";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
-
-const books = [
-  {
-    source: require("../../assets/biasach.jpg"),
-    title: "Săn cá thần",
-    author: "Đặng Thiều Quang",
-    price: 200000,
-    discount: 20,
-  },
-  {
-    source: require("../../assets/biasach.jpg"),
-    title: "Săn cá thần",
-    author: "Đặng Thiều Quang",
-    price: 200000,
-    discount: 10,
-  },
-  {
-    source: require("../../assets/biasach.jpg"),
-    title: "Săn cá thần",
-    author: "Đặng Thiều Quang",
-    price: 200000,
-    discount: 15,
-  },
-  {
-    source: require("../../assets/biasach.jpg"),
-    title: "Săn cá thần",
-    author: "Đặng Thiều Quang",
-    price: 200000,
-    discount: 21,
-  },
-  {
-    source: require("../../assets/biasach.jpg"),
-    title: "Săn cá thần",
-    author: "Đặng Thiều Quang",
-    price: 200000,
-    discount: 11,
-  },
-  {
-    source: require("../../assets/biasach.jpg"),
-    title: "Săn cá thần",
-    author: "Đặng Thiều Quang",
-    price: 200000,
-    discount: 11,
-  },
-  {
-    source: require("../../assets/biasach.jpg"),
-    title: "Săn cá thần",
-    author: "Đặng Thiều Quang",
-    price: 200000,
-    discount: 11,
-  },
-];
+import { BOOKS_DATA } from "../data/booksData";
+import { useWishlist } from "../hooks/useWishlist";
 
 const BookStoreScreen = () => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<any>();
+  const { isInWishlist, toggleWishlist } = useWishlist();
 
   return (
     <View style={styles.container}>
-      {books.map((book, index) => {
-        const isSingle = books.length % 2 !== 0 && index === books.length - 1;
+      {BOOKS_DATA.map((book, index) => {
+        const isSingle =
+          BOOKS_DATA.length % 2 !== 0 && index === BOOKS_DATA.length - 1;
 
         return (
           <BookCard
-            key={index}
+            key={book.id}
             book={book}
             isSingle={isSingle}
+            isWishlisted={isInWishlist(book.id)}
+            onToggleWishlist={() => toggleWishlist(book)}
             onPress={() =>
               navigation.navigate("BookDetail", {
+                bookId: book.id,
                 book: book,
               })
             }
@@ -90,5 +42,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
+    paddingHorizontal: 12,
   },
 });
